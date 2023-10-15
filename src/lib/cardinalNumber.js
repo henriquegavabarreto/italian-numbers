@@ -6,7 +6,7 @@ const _teens = [ "dieci", "undici", "dodici", "tredici", "quatordici", "quindici
 const _powerOfTen = [ "cento", "mille", "milione", "miliardo" ]
 
 // creates a compound written number for a group up to 3 digits
-function createCompound(numbers, group) {
+function createCompound(numbers, group, numberOfGroups) {
     let compound = ""
 
     // ignore hundreds if its digit is 0 (e.g.:0 in 1,025)
@@ -27,6 +27,12 @@ function createCompound(numbers, group) {
         if (numbers[numbers.length - 2] === "1") {
             compound += _teens[numbers[numbers.length - 1]]
         } else {
+            // removes "o" of cento if 8 is on the tens (example: centottanta)
+            if(compound.includes("cento") && numbers[numbers.length - 2] === "8") {
+                compound = compound.substring(0, compound.length - 1)
+            }
+
+            // Add multiple of ten word
             compound += _multiplesOfTen[numbers[numbers.length - 2]]
 
             // removes last letter from tens in case of units 1 or 8
@@ -50,11 +56,21 @@ function createCompound(numbers, group) {
 
     // if the number is greater than 1, add group word (power of ten)
     if (numbers > 1) {
-        compound += _powerOfTenPlural[group]
+        // if there are more than 2 groups (the whole number is greater or equal 1,000,000)
+        // separate power of ten word from the rest in the groups greater or equal 2
+        if (numberOfGroups > 2 && group >= 2) {
+            compound += ` ${_powerOfTenPlural[group]} `
+        } else {
+            compound += _powerOfTenPlural[group]
+        }
     } else if (numbers[numbers.length - 1] === "1") { // if the last digit is 1, group one does not have "uno" and higher groups use "un"
         if (group > 1) {
             compound = compound.substring(0, compound.length - 1)
-            compound += _powerOfTen[group]
+            if (group >= 2) {
+                compound += ` ${_powerOfTen[group]} `
+            } else {
+                compound += _powerOfTen[group]
+            }
         } else if (group === 1) {
             compound = compound.substring(0, compound.length - 3)
             compound += _powerOfTen[group]
@@ -65,6 +81,11 @@ function createCompound(numbers, group) {
     if (group === 0 && numbers[numbers.length - 1] === "3" && numbers > 20) {
         compound = compound.substring(0, compound.length - 1)
         compound += "é"
+    }
+
+    // add a space between group 0 and 1 in numbers greater or equal 1,000,000
+    if (numberOfGroups > 2 && group === 0) {
+        compound = ` ${compound}`
     }
 
     // returns the compound word
@@ -102,8 +123,8 @@ export function getCardinalNumber(number) {
 
     // create a compound number for each group in the list
     for (let i = numberInGroups.length - 1; i >= 0; i--) {
-        cardinalNumber += createCompound(numberInGroups[i], i)
+        cardinalNumber += createCompound(numberInGroups[i], i, numberInGroups.length)
     }
 
-    return cardinalNumber
+    return cardinalNumber.trim()
 }
