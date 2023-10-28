@@ -1,0 +1,11 @@
+.feedback {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.feedbackItem {
+    max-width: 200px;
+    margin: auto;
+    text-align: left;
+}

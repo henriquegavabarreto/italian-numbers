@@ -1,9 +1,11 @@
-const NumberInput = ({ name, min, max, value, setValue }) => {
+import "./NumberInput.css"
+
+const NumberInput = ({ name, min, max, value, setValue, hasStyle }) => {
     return (
-        <div className="numberInput">
+        <div>
             <label className="numberInputLabel">{name}</label>
             <input
-                className="numberInputBox"
+                className={hasStyle ? "invalidInput" : ""}
                 type="number"
                 min={min}
                 max={max}
