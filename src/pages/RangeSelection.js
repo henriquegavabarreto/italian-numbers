@@ -34,9 +34,9 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
         
         // check if minNumber is valid in the following scenarios
         // min >= minimum required (and a number)
-        minFeedback[`min >= ${minInput.min}`] = minNumber >= minInput.min || !isNaN(minNumber)
+        minFeedback[`min >= ${minInput.min}`] = minNumber >= minInput.min && !isNaN(minNumber)
         // min <= maximum possible (and a number)
-        minFeedback[`min <= ${minInput.max}`] = minNumber <= minInput.max || !isNaN(minNumber)
+        minFeedback[`min <= ${minInput.max}`] = minNumber <= minInput.max && !isNaN(minNumber)
         // minNumber <= maxNumber
         minFeedback["min <= max"] = minNumber <= maxNumber
 
@@ -49,9 +49,9 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
 
         // Check if maxNumber is valid in the following scenarios
         // max >= minimum required (and a number)
-        maxFeedback[`max >= ${maxInput.min}`] = maxNumber >= maxInput.min || !isNaN(maxNumber)
+        maxFeedback[`max >= ${maxInput.min}`] = maxNumber >= maxInput.min && !isNaN(maxNumber)
         // max <= maximum possible (and a number)
-        maxFeedback[`max <= ${maxInput.max}`] = maxNumber <= maxInput.max || !isNaN(maxNumber)
+        maxFeedback[`max <= ${maxInput.max}`] = maxNumber <= maxInput.max && !isNaN(maxNumber)
         // maxNumber >= minNumber
         maxFeedback["max >= min"] = maxNumber >= minNumber
         
@@ -79,9 +79,9 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
             max={minInput.max}
             value={minNumber}
             setValue={(value) => setMinNumber(parseInt(value))}/>
-        <div className="feedback">
+        <div className="feedbackBox">
             {Object.keys(feedback.minFeedback).map(key => (
-                <div className="feedbackItem">
+                <div key={key} className="feedbackItem">
                     <ValidationFeedback className="feedbackItem" key={key} text={key} correct={feedback.minFeedback[key]}/>
                 </div>
             ))}
@@ -93,10 +93,10 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
             max={maxInput.max}
             value={maxNumber}
             setValue={(value) => !isNaN(value) && setMaxNumber(parseInt(value))}/>
-        <div className="feedback">
+        <div className="feedbackBox">
             {Object.keys(feedback.maxFeedback).map(key => (
-                <div className="feedbackItem">
-                    <ValidationFeedback key={key} text={key} correct={feedback.maxFeedback[key]}/>
+                <div key={key} className="feedbackItem">
+                    <ValidationFeedback text={key} correct={feedback.maxFeedback[key]}/>
                 </div>
             ))}
         </div>
