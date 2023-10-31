@@ -82,7 +82,7 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
         <div className="feedbackBox">
             {Object.keys(feedback.minFeedback).map(key => (
                 <div key={key} className="feedbackItem">
-                    <ValidationFeedback className="feedbackItem" key={key} text={key} correct={feedback.minFeedback[key]}/>
+                    <ValidationFeedback className="feedbackItem" key={key} text={key} valid={feedback.minFeedback[key]}/>
                 </div>
             ))}
         </div>
@@ -96,7 +96,7 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
         <div className="feedbackBox">
             {Object.keys(feedback.maxFeedback).map(key => (
                 <div key={key} className="feedbackItem">
-                    <ValidationFeedback text={key} correct={feedback.maxFeedback[key]}/>
+                    <ValidationFeedback text={key} valid={feedback.maxFeedback[key]}/>
                 </div>
             ))}
         </div>

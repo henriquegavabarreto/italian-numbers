@@ -1,6 +1,7 @@
 import { useRef, useState } from "react"
 import ActionButton from "../components/ActionButton"
 import { getCardinalNumber } from "../lib/cardinalNumber"
+import "./NumberGuessing.css"
 
 const NumberGuessing = ({ getRandomNumber, setPage }) => {
     let [randomNumber, setRandomNumber] = useState(getRandomNumber)
@@ -22,7 +23,7 @@ const NumberGuessing = ({ getRandomNumber, setPage }) => {
         // Check if user guess is correct
         let answer = getCardinalNumber(randomNumber)
 
-        if (guess.current.value === answer) {
+        if (guess.current.value.toString().toLowerCase() === answer) {
             setIsCorrect(true)
         } else {
             setIsCorrect(false)
@@ -44,12 +45,17 @@ const NumberGuessing = ({ getRandomNumber, setPage }) => {
         <ActionButton text="<<" action={() => setPage('select')}/>
         <h1>{randomNumber}</h1>
         <h3>{ !isGraded ? "____________" : isCorrect ? "Giusto!" : correctAnswer }</h3>
-        <input
-            type="text"
-            placeholder="numero"
-            ref={guess}
-            onKeyUp={e => handleKeyUp(e)}/>
-        <ActionButton text=">>" action={handleClick}/>
+        <div>
+            <span className={isGraded ? "visible" : "hidden"}>{isCorrect ? "✅" : "❌"}</span>
+            <input
+                type="text"
+                placeholder="numero"
+                spellCheck="false"
+                readOnly={isGraded}
+                ref={guess}
+                onKeyUp={e => handleKeyUp(e)}/>
+            <ActionButton text=">>" action={handleClick}/>
+        </div>
         </>
     )
 }

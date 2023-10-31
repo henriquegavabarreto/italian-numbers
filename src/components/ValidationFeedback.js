@@ -1,7 +1,7 @@
-const ValidationFeedback = ({ correct, text }) => {
+const ValidationFeedback = ({ valid, text }) => {
     return (
         <div>
-            <span>{correct ? "✅" : "❌"}</span>
+            <span>{valid ? "✅" : "❌"}</span>
             {text}
         </div>
     )
