@@ -36,6 +36,10 @@ test('number ending in 3 gets an accent', () => {
   expect(getCardinalNumber(63)).toBe('sessantatré')
   })
 
+test('number ending in 13 gets no accent', () => {
+  expect(getCardinalNumber(213)).toBe('duecentotredici')
+  })
+
 test('number ending in 3 gets an accent only at the end', () => {
   expect(getCardinalNumber(193063)).toBe('centonovantatremilasessantatré')
   })
