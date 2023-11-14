@@ -1,0 +1,9 @@
+.actionButton {
+    border-radius: 20%;
+    border: none;
+    background-color: #3E363F;
+    color: #FFFCE8;
+    text-align: center;
+    font-size: 30px;
+    margin: 10px;
+}

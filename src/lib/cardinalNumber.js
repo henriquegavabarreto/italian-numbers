@@ -78,7 +78,7 @@ function createCompound(numbers, group, numberOfGroups) {
     }
 
     // if the number ends in 3 not preceded by 1, add accent é instead of e 
-    if (group === 0 && numbers[numbers.length - 1] === "3" && numbers[numbers.length - 2] !== "1") {
+    if (group === 0 && numbers[numbers.length - 1] === "3" && numbers[numbers.length - 2] !== "1" && numbers > 3) {
         compound = compound.substring(0, compound.length - 1)
         compound += "é"
     }

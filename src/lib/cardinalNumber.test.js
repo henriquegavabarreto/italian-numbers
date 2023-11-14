@@ -86,7 +86,7 @@ test('Writes 1,000,000 correctly', () => {
 
 test('Writes plurals of million correctly', () => {
   expect(getCardinalNumber(253500270)).toBe('duecentocinquantatre milioni cinquecentomila duecentosettanta')
-  })
+  })  
 
 test('Writes 1,000,000,000 correctly', () => {
   expect(getCardinalNumber(1000000000)).toBe('un miliardo')

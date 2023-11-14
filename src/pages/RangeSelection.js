@@ -71,37 +71,37 @@ const RangeSelection = ({ minNumber, maxNumber, setMinNumber, setMaxNumber, setP
         setPage("guess")
     }
     return (
-        <>
-        <NumberInput
-            hasStyle={minInputStyle}
-            name="Min"
-            min={minInput.min}
-            max={minInput.max}
-            value={minNumber}
-            setValue={(value) => setMinNumber(parseInt(value))}/>
-        <div className="feedbackBox">
-            {Object.keys(feedback.minFeedback).map(key => (
-                <div key={key} className="feedbackItem">
-                    <ValidationFeedback className="feedbackItem" key={key} text={key} valid={feedback.minFeedback[key]}/>
-                </div>
-            ))}
+        <div className="rangeSelectionPage">
+            <NumberInput
+                hasStyle={minInputStyle}
+                name="Min"
+                min={minInput.min}
+                max={minInput.max}
+                value={minNumber}
+                setValue={(value) => setMinNumber(parseInt(value))}/>
+            <div className="feedbackBox">
+                {Object.keys(feedback.minFeedback).map(key => (
+                    <div key={key} className="feedbackItem">
+                        <ValidationFeedback className="feedbackItem" key={key} text={key} valid={feedback.minFeedback[key]}/>
+                    </div>
+                ))}
+            </div>
+            <NumberInput
+                hasStyle={maxInputStyle}
+                name="Max"
+                min={maxInput.min}
+                max={maxInput.max}
+                value={maxNumber}
+                setValue={(value) => !isNaN(value) && setMaxNumber(parseInt(value))}/>
+            <div className="feedbackBox">
+                {Object.keys(feedback.maxFeedback).map(key => (
+                    <div key={key} className="feedbackItem">
+                        <ValidationFeedback text={key} valid={feedback.maxFeedback[key]}/>
+                    </div>
+                ))}
+            </div>
+            <ActionButton text=">>" action={handleClick}/>
         </div>
-        <NumberInput
-            hasStyle={maxInputStyle}
-            name="Max"
-            min={maxInput.min}
-            max={maxInput.max}
-            value={maxNumber}
-            setValue={(value) => !isNaN(value) && setMaxNumber(parseInt(value))}/>
-        <div className="feedbackBox">
-            {Object.keys(feedback.maxFeedback).map(key => (
-                <div key={key} className="feedbackItem">
-                    <ValidationFeedback text={key} valid={feedback.maxFeedback[key]}/>
-                </div>
-            ))}
-        </div>
-        <ActionButton text=">>" action={handleClick}/>
-        </>
     )
 }
 

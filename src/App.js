@@ -14,16 +14,18 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Italian Numbers</h1>
-      {page === 'select' && <RangeSelection 
-                              minNumber={minNumber}
-                              setMinNumber={setMinNumber}
-                              maxNumber={maxNumber}
-                              setMaxNumber={setMaxNumber}
-                              setPage={setPage}/>}
-      {page === 'guess' && <NumberGuessing
-                              getRandomNumber={getRandomNumber}
-                              setPage={setPage}/>}
+      <h1 className="pageTitle">Italian Numbers</h1>
+      <div className="pageContent">
+        {page === 'select' && <RangeSelection 
+                                minNumber={minNumber}
+                                setMinNumber={setMinNumber}
+                                maxNumber={maxNumber}
+                                setMaxNumber={setMaxNumber}
+                                setPage={setPage}/>}
+        {page === 'guess' && <NumberGuessing
+                                getRandomNumber={getRandomNumber}
+                                setPage={setPage}/>}
+      </div>
     </div>
   )
 }

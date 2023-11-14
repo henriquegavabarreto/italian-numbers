@@ -1,3 +1,5 @@
+import "./ActionButton.css"
+
 const ActionButton = ({ text, action }) => {
     return (
         <>

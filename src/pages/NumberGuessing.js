@@ -23,7 +23,7 @@ const NumberGuessing = ({ getRandomNumber, setPage }) => {
         // Check if user guess is correct
         let answer = getCardinalNumber(randomNumber)
 
-        if (guess.current.value.toString().toLowerCase() === answer) {
+        if (guess.current.value.toString().trim().toLowerCase() === answer) {
             setIsCorrect(true)
         } else {
             setIsCorrect(false)
@@ -43,17 +43,19 @@ const NumberGuessing = ({ getRandomNumber, setPage }) => {
     return (
         <>
         <ActionButton text="<<" action={() => setPage('select')}/>
-        <h1>{randomNumber}</h1>
-        <h3>{ !isGraded ? "____________" : isCorrect ? "Giusto!" : correctAnswer }</h3>
-        <div>
-            <span className={isGraded ? "visible" : "hidden"}>{isCorrect ? "✅" : "❌"}</span>
-            <input
-                type="text"
-                placeholder="numero"
-                spellCheck="false"
-                readOnly={isGraded}
-                ref={guess}
-                onKeyUp={e => handleKeyUp(e)}/>
+        <div className="gameArea">
+            <h1>{randomNumber}</h1>
+            <h3>{ !isGraded ? "____________" : isCorrect ? "Giusto!" : correctAnswer }</h3>
+            <div className="guess">
+                <span className={isGraded ? "visible" : "hidden"}>{isCorrect ? "✅" : "❌"}</span>
+                <textarea
+                    type="text"
+                    placeholder="numero"
+                    spellCheck="false"
+                    readOnly={isGraded}
+                    ref={guess}
+                    onKeyUp={e => handleKeyUp(e)}/>
+            </div>
             <ActionButton text=">>" action={handleClick}/>
         </div>
         </>
