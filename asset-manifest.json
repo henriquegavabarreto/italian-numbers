@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/italian-numbers/static/css/main.5b6534cb.css",
+    "main.js": "/italian-numbers/static/js/main.2bdbff6b.js",
+    "static/js/787.3534d1c0.chunk.js": "/italian-numbers/static/js/787.3534d1c0.chunk.js",
+    "index.html": "/italian-numbers/index.html",
+    "main.5b6534cb.css.map": "/italian-numbers/static/css/main.5b6534cb.css.map",
+    "main.2bdbff6b.js.map": "/italian-numbers/static/js/main.2bdbff6b.js.map",
+    "787.3534d1c0.chunk.js.map": "/italian-numbers/static/js/787.3534d1c0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5b6534cb.css",
+    "static/js/main.2bdbff6b.js"
+  ]
+}
