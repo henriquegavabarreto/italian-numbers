@@ -1,3 +1,21 @@
+# Italian Numbers
+
+This project, created with node v19.8.1, creates a simple app using React to exercise how to write cardinal numbers in Italian.
+
+The app contains two simple pages:
+- one to choose the range of the numbers that can appear on the quiz (RangeSelection)
+- and another to write the cardinal numbers. (NumberGuessing)
+
+Written cardinal number generation can be found in `lib/cardinalNumber.js`. `getCardinalNumber` expects a number and returns the written cardinal number to be used for comparison in NumberGuessing.
+
+Not all written numbers exceptions and alternatives are covered in the current version of Italian Numbers.
+
+After cloning the repo, don't forget to run `npm install` to install all dependencies.
+
+
+Original Create React App Readme with steps to run the project are below.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
