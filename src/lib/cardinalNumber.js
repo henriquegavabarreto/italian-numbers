@@ -2,7 +2,7 @@
 const _units = [ "zero", "uno", "due", "tre", "quattro", "cinque", "sei", "sette", "otto", "nove" ]
 const _multiplesOfTen = [ "", "", "venti", "trenta", "quaranta", "cinquanta", "sessanta", "settanta", "ottanta", "novanta" ]
 const _powerOfTenPlural = [ "", "mila", "milioni", "miliardi" ]
-const _teens = [ "dieci", "undici", "dodici", "tredici", "quatordici", "quindici", "sedici", "diciassette", "diciotto", "dicianove" ]
+const _teens = [ "dieci", "undici", "dodici", "tredici", "quattordici", "quindici", "sedici", "diciassette", "diciotto", "diciannove" ]
 const _powerOfTen = [ "cento", "mille", "milione", "miliardo" ]
 
 // creates a compound written number for a group up to 3 digits
@@ -21,7 +21,8 @@ function createCompound(numbers, group, numberOfGroups) {
     }
 
     // this block makes compound words related to the 2 last digits
-    // if the digit related to the tens is 0, ignores and goes to else
+    // if the digit related to the tens is 0, ignores and goes to 
+    // X0X will ignore this part, so centotto doesn't apply here
     if (numbers.length >= 2 && numbers[numbers.length - 2] !== "0") {
         // if starts with one, add teen word
         if (numbers[numbers.length - 2] === "1") {
@@ -46,6 +47,10 @@ function createCompound(numbers, group, numberOfGroups) {
             }
         }
     } else {
+        // removes last letter from cento in case of units 1 or 8
+        if (compound.includes("cento") && (numbers[numbers.length - 1] === "1" || numbers[numbers.length - 1] === "8")) {
+            compound = compound.substring(0, compound.length - 1)
+        }
         // 3 digits with a 0 in the tens or 1 digit, e.g.: 000, 002, 300, 403 or 5
 
         // if last digit is 0 and it is just one digit (zero) or the last digit is not 0, write the digit
